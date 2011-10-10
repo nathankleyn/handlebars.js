@@ -19,7 +19,7 @@
 <mu>"="                      { return 'EQUALS'; }
 <mu>"."/[} ]                 { return 'ID'; }
 <mu>".."                     { return 'ID'; }
-<mu>[/.]                     { return 'SEP'; }
+<mu>[\/.]                     { return 'SEP'; }
 <mu>\s+                      { /*ignore whitespace*/ }
 <mu>"}}}"                    { this.begin("INITIAL"); return 'CLOSE'; }
 <mu>"}}"                     { this.begin("INITIAL"); return 'CLOSE'; }
@@ -27,7 +27,7 @@
 <mu>"true"/[}\s]             { return 'BOOLEAN'; }
 <mu>"false"/[}\s]            { return 'BOOLEAN'; }
 <mu>[0-9]+/[}\s]             { return 'INTEGER'; }
-<mu>[a-zA-Z0-9_$-]+/[=}\s/.] { return 'ID'; }
+<mu>[a-zA-Z0-9_$-]+/[=}\s\/.] { return 'ID'; }
 <mu>\[.*\]                   { yytext = yytext.substr(1, yyleng-2); return 'ID'; }
 <mu>.                        { return 'INVALID'; }
 
